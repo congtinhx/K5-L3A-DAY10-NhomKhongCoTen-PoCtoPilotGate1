@@ -1,0 +1,4 @@
+# Giu dung kieu xuong dong de hash file khoa va tieu chi da ky khop tren moi may (Windows/Mac/Linux)
+* text=auto eol=lf
+# Tieu chi duoc ky tren Windows (CRLF): luon checkout dang CRLF de khop hash trong acceptance_criteria.lock
+config/acceptance_criteria.json text eol=crlf
