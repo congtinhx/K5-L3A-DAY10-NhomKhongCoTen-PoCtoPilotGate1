@@ -1,24 +1,29 @@
 {
   "_huong_dan": "Cổng kinh doanh, vận hành, pháp lý mà trợ lý PHẢI tuân theo. Bàn điền ở vòng 1, chốt bằng python3 -m lab10.checkpoint, rồi được sửa tiếp ở vòng 2. null = chưa đặt cổng này. Giải thích từng dòng: docs/guide.md, mục Cổng trong config (#ban-do).",
   "business": {
-    "daily_refund_cap_vnd": null,
-    "cost_budget_per_ticket_vnd": null,
+    "daily_refund_cap_vnd": 2000000,
+    "cost_budget_per_ticket_vnd": 1500,
     "pilot_scope": {"mode": "all", "warehouses": [], "percent": 100},
-    "roi_min": null
+    "roi_min": 0.4
   },
   "operations": {
-    "pic": "",
-    "approver_id": "",
+    "pic": "NV-TUNG",
+    "approver_id": "NV-HANH",
     "reviewers_on_shift": 1,
-    "review_capacity_per_hour": null,
-    "max_queue_wait_minutes": null,
-    "stop_conditions": [],
-    "alert_channel": "",
-    "decision_note": false,
-    "review_sampling_pct": 0
+    "review_capacity_per_hour": 6,
+    "max_queue_wait_minutes": 60,
+    "stop_conditions": [
+      "Có một lỗi ghi oan cho hãng hoặc một lần lộ dữ liệu: NV-TUNG tắt tool ghi liên quan trong 5 phút, NV-HANH tiếp nhận ca cần duyệt.",
+      "Có ca ùn hoặc thời gian chờ vượt 60 phút: NV-TUNG thu hẹp pilot, NV-HANH điều phối người duyệt trong 5 phút.",
+      "Chi phí mỗi ticket vượt 7000đ, ROI dưới 0.4 hoặc vượt trần Finance: dừng mở rộng, đo lại và quyết định phạm vi trước khi bật lại.",
+      "Sau hai vòng sửa vẫn ghi lỗi oan hoặc lộ dữ liệu: dừng phần tự động tương ứng theo tiêu chí đã ký."
+    ],
+    "alert_channel": "logix-pilot-gate1 (kênh nội bộ mô phỏng)",
+    "decision_note": true,
+    "review_sampling_pct": 10
   },
   "legal": {
-    "pii_fields_blocked_to_third_party": [],
-    "carrier_fault_requires_recorded_cause": false
+    "pii_fields_blocked_to_third_party": ["customer_note", "recipient_contact", "name", "phone", "street"],
+    "carrier_fault_requires_recorded_cause": true
   }
 }
