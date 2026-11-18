@@ -28,7 +28,9 @@ Mỗi thành viên tự viết một mục bên dưới (chép mẫu, đổi ti�
 
 ### Phần việc phụ trách
 
-Vai trong bàn; câu nào của đề, mục nào của phiếu A/B/C, file nào (`lab10/guards.py`, `config/operating_gates.json`, …).
+Trưởng nhóm, Kỹ sư cổng. Vòng 1: cài đặt repo (origin, upstream, danh tính Git), Phiếu A câu 1.3 (offline metric bước ghi lỗi hãng, cùng Hưng); sắp tới: chạy lệnh 2–4 (B0–B2), cổng trong `lab10/guards.py` (B7.1–B7.3), chốt vòng 1 (lệnh 5). Vòng 2: dò trace thẻ sự cố, sửa cổng, `lab10/monitors.py`.
+
+Dùng AI (Claude) để: đọc hiểu đề và code, nháp câu trả lời Phiếu A và ngưỡng tiêu chí; bàn đã soát và chốt lại các con số.
 
 ### Đóng góp cụ thể
 
@@ -46,7 +48,9 @@ Một điều học được, một điều còn chưa chắc.
 
 ### Phần việc phụ trách
 
-Vai trong bàn; câu nào của đề, mục nào của phiếu A/B/C, file nào (`lab10/guards.py`, `config/operating_gates.json`, …).
+Kỹ sư cổng. Vòng 1: Phiếu A câu 1.3 (offline metric bước ghi lỗi hãng, cùng Tĩnh); sắp tới: dò trace `T-002@55` (B2), behavioral test và ticket hiểm (B7.3), viết cổng trong `lab10/guards.py`. Vòng 2: dò trace thẻ sự cố, chỉ số theo dõi trong `lab10/monitors.py`.
+
+Dùng AI (Claude) để: đọc hiểu đề và code, nháp câu trả lời Phiếu A và ngưỡng tiêu chí; bàn đã soát và chốt lại các con số.
 
 ### Đóng góp cụ thể
 
@@ -64,7 +68,9 @@ Một điều học được, một điều còn chưa chắc.
 
 ### Phần việc phụ trách
 
-Vai trong bàn; câu nào của đề, mục nào của phiếu A/B/C, file nào (`lab10/guards.py`, `config/operating_gates.json`, …).
+Sản phẩm và kinh doanh, người ký Bản tiêu chí. Vòng 1: Phiếu A câu 1.1, 1.5 (ghi), 1.6; `config/acceptance_criteria.json` (ngưỡng, `business_ops`, `stop_condition`, `decision_rule`), ký ở phút 60–65; sắp tới: bản đồ dữ liệu và drift (B3), `config/operating_gates.json` mục `business` (B7.4), quyết định v1 (B8). Vòng 2: chi phí, ROI, phạm vi pilot, quyết định v2 (C12).
+
+Dùng AI (Claude) để: đọc hiểu đề và code, nháp câu trả lời Phiếu A và ngưỡng tiêu chí; bàn đã soát và chốt lại các con số.
 
 ### Đóng góp cụ thể
 
@@ -82,7 +88,9 @@ Một điều học được, một điều còn chưa chắc.
 
 ### Phần việc phụ trách
 
-Vai trong bàn; câu nào của đề, mục nào của phiếu A/B/C, file nào (`lab10/guards.py`, `config/operating_gates.json`, …).
+Vận hành và pháp lý. Vòng 1: Phiếu A câu 1.2, 1.4 (telemetry production); sắp tới: HAZOP vòng 1 (B4), checklist 9 nhóm (B5), `config/operating_gates.json` mục `operations` và `legal`, runbook 1–3 và giờ cao điểm (B7.5–B7.6). Vòng 2: runbook 4–5 (C11), `submission/submission.json`, gom bài (lệnh 7).
+
+Dùng AI (Claude) để: đọc hiểu đề và code, nháp câu trả lời Phiếu A và ngưỡng tiêu chí; bàn đã soát và chốt lại các con số.
 
 ### Đóng góp cụ thể
 
