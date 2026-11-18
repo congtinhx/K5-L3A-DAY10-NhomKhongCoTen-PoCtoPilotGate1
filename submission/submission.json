@@ -1,12 +1,17 @@
 {
-  "team": "",
-  "members": [],
-  "incident": "",
-  "decision_v1": "",
-  "decision_v2": "",
+  "team": "K5-L3A-DAY10-NhomKhongCoTen-PoCtoPilotGate1",
+  "members": [
+    "NguyenCongTinh-2A202603373",
+    "DuongTuanHung-2A202603416",
+    "TranDangKhoa-2A202603364",
+    "NguyenNgocMinhDuc-2A202603421"
+  ],
+  "incident": "S5",
+  "decision_v1": "Tiếp tục",
+  "decision_v2": "Thu hẹp",
   "three_lines": {
-    "environment_assumption": "",
-    "reduce_or_prevent": "",
-    "measure_in_pilot": ""
+    "environment_assumption": "Thiết kế đang giả định mọi khoản hoàn tiền (kể cả CSKH hoàn tay một phần hay toàn phần) đều được ghi tức thời và tuần tự vào cùng một sổ cái ledger không có độ trễ hay tranh chấp đồng thời (race condition), và ở 4 kho bán lẻ HN, HCM, DN, CT tỷ lệ đơn giá trị cao (> 1,7 triệu đồng làm tiền bồi thường vượt auto_limit_vnd = 200.000đ) cùng tỷ lệ email dán phụ lục dài (> 2.200 ký tự) luôn giữ ở mức thấp như bộ thử (<= 16,67%) nên chi phí bình quân mỗi kho lẻ không bao giờ vượt 7.000đ/ticket.",
+    "reduce_or_prevent": "Cổng write_gate (deny khi already_paid >= entitlement, modify phần chênh lệch entitlement - already_paid), pre_guard (chặn khi forecast > 1.500đ) và pilot_scope (cắt kho sỉ HCM-B2B) NGĂN hẳn tác hại trong phạm vi dữ liệu đã đồng bộ vào DB/sổ cái và cấu hình giá hiện hành (kéo hoàn sai từ 890.000đ về 0đ, lỗi hãng oan từ 20 về 0, tiền LLM tối đa từ 2.412đ về 765đ <= 1.500đ, và xoá kho lỗ 10.382đ/ticket để đưa chi phí chung về 3.980đ/ticket, ROI 1,51); nhưng ngoài thực tế chỉ GIẢM khả năng đối với tổng rủi ro vận hành vì (1) ticket dài bị pre_guard chặn vẫn phải chuyển người duyệt tốn 10.000đ công người, (2) ở 4 kho lẻ vẫn có thể phát sinh đợt đơn giá trị cao làm tăng tỷ lệ chuyển người, và (3) nếu CSKH hoàn tiền ngoài sổ cái hoặc nhiều tiến trình ghi song song không có khoá unique/transaction theo order_id ở tầng DB thì write_gate không thấy được dòng đang ghi dở.",
+    "measure_in_pilot": "Trong 2 tuần pilot thật ở 4 kho lẻ (HN, HCM, DN, CT) trước Gate 2 (01/12/2026, thời điểm REFUND-v4 có hiệu lực), cần đo lại trên dữ liệu thật: (1) phân phối độ dài token thực tế và chi phí API LLM mỗi ticket theo từng kho/kênh (max_warehouse_cost_per_ticket_vnd, over_llm_budget_rate), (2) độ trễ đồng bộ giữa công cụ hoàn tay của CSKH với sổ cái trợ lý đọc và tỷ lệ ticket gửi lặp đa kênh (ledger_repeat_refund_rate), và (3) thời gian xử lý thực tế của một ca duyệt có decision_note (xác nhận có đúng bằng 0,4 ca = 4 phút như giả định ops_facts hay không) cùng tỷ lệ hoàn sai/lỗi hãng oan phát hiện qua kiểm mẫu 10% và đối soát cuối tuần của chị Oanh."
   }
 }

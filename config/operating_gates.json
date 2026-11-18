@@ -3,7 +3,7 @@
   "business": {
     "daily_refund_cap_vnd": 2000000,
     "cost_budget_per_ticket_vnd": 1500,
-    "pilot_scope": {"mode": "all", "warehouses": [], "percent": 100},
+    "pilot_scope": {"mode": "warehouse", "warehouses": ["HN", "HCM", "DN", "CT"], "percent": 100},
     "roi_min": 0.4
   },
   "operations": {
@@ -15,7 +15,7 @@
     "stop_conditions": [
       "Có một lỗi ghi oan cho hãng hoặc một lần lộ dữ liệu: NV-TUNG tắt tool ghi liên quan trong 5 phút, NV-HANH tiếp nhận ca cần duyệt.",
       "Có ca ùn hoặc thời gian chờ vượt 60 phút: NV-TUNG thu hẹp pilot, NV-HANH điều phối người duyệt trong 5 phút.",
-      "Chi phí mỗi ticket vượt 7000đ, ROI dưới 0.4 hoặc vượt trần Finance: dừng mở rộng, đo lại và quyết định phạm vi trước khi bật lại.",
+      "Chi phí mỗi ticket vượt 7000đ, có kho đắt hơn làm tay 10000đ, ROI dưới 0.4 hoặc vượt trần Finance: NV-TUNG cắt kho lỗ khỏi pilot_scope trong 5 phút.",
       "Sau hai vòng sửa vẫn ghi lỗi oan hoặc lộ dữ liệu: dừng phần tự động tương ứng theo tiêu chí đã ký."
     ],
     "alert_channel": "logix-pilot-gate1 (kênh nội bộ mô phỏng)",

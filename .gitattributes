@@ -2,3 +2,4 @@
 * text=auto eol=lf
 # Tieu chi duoc ky tren Windows (CRLF): luon checkout dang CRLF de khop hash trong acceptance_criteria.lock
 config/acceptance_criteria.json text eol=crlf
+submission/config/acceptance_criteria.json text eol=crlf

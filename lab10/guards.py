@@ -116,38 +116,51 @@ def write_gate(ctx, action):
         if action.get("order_id") != order["order_id"] or action.get("ticket_id") != ctx.ticket["ticket_id"]:
             return Verdict.escalate("lệnh hoàn không thuộc đơn và ticket đang xử lý")
         # Retry sau khi tiền đã ghi phải bỏ riêng lệnh ghi lặp, không chuyển người sau khi đã trả tiền.
+        if any(e.get("type") == "tool" and e.get("tool") == "issue_refund" for e in ctx.events):
+            return Verdict.deny("đã ghi hoàn thành công trong lượt này; bỏ lệnh retry")
         rows = ctx.tools.ledger_rows(order_id=order["order_id"])
-        if rows:
-            if any(e.get("type") == "tool" and e.get("tool") == "issue_refund" for e in ctx.events):
-                return Verdict.deny("đã ghi hoàn thành công trong lượt này; bỏ lệnh retry")
-            return Verdict.escalate("sổ cái đã có khoản hoàn cho đơn: cần đối soát, không hoàn lặp")
+        already_paid = sum(r.get("amount_vnd", 0) for r in rows)
+        remaining = entitlement - already_paid
+        if rows and remaining <= 0:
+            ctx.log("duplicate_refund_denied", order_id=order["order_id"],
+                    already_paid_vnd=already_paid, entitlement_vnd=entitlement)
+            return Verdict.deny("sổ cái đã hoàn đủ quyền lợi cho đơn này, không hoàn lặp")
         amount = action.get("amount_vnd")
-        if isinstance(amount, bool) or not isinstance(amount, int) or amount != entitlement or amount <= 0:
+        if (isinstance(amount, bool) or not isinstance(amount, int) or amount <= 0
+                or amount not in (entitlement, remaining)):
             return Verdict.escalate("tiền hoàn khác quyền lợi tính từ tracking DB và chính sách hiệu lực")
         if action.get("payer") != "LOGIX":
             return Verdict.escalate("không cho model tự đổi bên trả tiền sang shop")
+        if action.get("basis", "policy") != "policy":
+            return Verdict.escalate("không hoàn tự động khi policy check ở chế độ dự phòng fail_open")
         if delay > 0 and parcel.get("delay_cause") is None:
             return Verdict.escalate("tracking chưa ghi nguyên nhân trễ, không tự suy đoán")
+        target_amount = remaining if rows else entitlement
         approval_id = action.get("approval_id")
-        if (approval_id or amount > policy["auto_limit_vnd"]) and not _approval_ok(ctx, action, order):
+        if (approval_id or target_amount > policy["auto_limit_vnd"]) and not _approval_ok(
+                ctx, {**action, "amount_vnd": target_amount}, order):
             return Verdict.escalate("thiếu phê duyệt hợp lệ đúng ticket, đơn, khách, hạn mức và người duyệt")
 
         # Cổng 2: kiểm trần TRƯỚC khi ghi tiền, kể cả trần lỗi hãng ở bước kế tiếp.
         limits = ctx.tools.ops_limits()
         if not approval_id:
             customer_paid = sum(r["amount_vnd"] for r in ctx.tools.ledger_rows(customer_id=order["customer_id"])
-                                if not r.get("approval_id"))
+                                if not r.get("approval_id") and r.get("basis") != "manual")
             customer_cap = limits.get("max_auto_refund_per_customer_per_day_vnd")
-            if customer_cap is not None and customer_paid + amount > customer_cap:
+            if customer_cap is not None and customer_paid + target_amount > customer_cap:
                 return Verdict.escalate("vượt trần hoàn tự động cho một khách: chuyển người trước khi ghi")
             caps = [limits.get("daily_auto_refund_budget_vnd"),
                     ctx.gates.get("business", {}).get("daily_refund_cap_vnd")]
-            if any(ctx.tools.auto_refund_today_vnd() + amount > cap for cap in caps if cap is not None):
+            if any(ctx.tools.auto_refund_today_vnd() + target_amount > cap for cap in caps if cap is not None):
                 return Verdict.escalate("vượt trần hoàn tự động trong ngày: chuyển người trước khi ghi")
         strike_cap = limits.get("max_auto_strikes_per_carrier_per_day")
         if (H.carrier_at_fault(policy, parcel, delay) and strike_cap is not None
                 and len(ctx.tools.fault_rows(carrier_id=parcel["carrier_id"])) >= strike_cap):
             return Verdict.escalate("hãng đã chạm trần lỗi tự động/ngày: người duyệt cả yêu cầu trước khi hoàn")
+        if amount != target_amount:
+            ctx.log("partial_refund_adjusted", order_id=order["order_id"],
+                    already_paid_vnd=already_paid, remaining_vnd=target_amount)
+            return Verdict.modify("khấu trừ khoản đã hoàn một phần trước đó trong sổ cái", amount_vnd=target_amount)
 
     # Cổng 3: lệnh ghi lỗi và thông báo chỉ dùng đúng kiện, đúng hãng, đúng căn cứ DB.
     elif tool == "file_carrier_fault":
