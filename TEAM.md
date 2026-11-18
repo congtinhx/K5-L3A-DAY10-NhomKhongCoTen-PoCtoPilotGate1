@@ -25,8 +25,8 @@ Cột "Vai" ở bảng trên là người **chịu trách nhiệm nội dung** c
 | Giai đoạn (phút) | Người thực hiện | Việc đã làm | Bằng chứng |
 | --- | --- | --- | --- |
 | 0–15 | Nguyễn Công Tĩnh | Tạo repo, gắn `upstream`, danh tính Git, chạy test công khai, điền `TEAM.md` | commit `6937ef5` |
-| 15–65 | Nguyễn Công Tĩnh (có Claude hỗ trợ nháp) | Phiếu A mục A1–A5, `config/acceptance_criteria.json`, ký và push tiêu chí | commit `a5c859d` (Sign acceptance criteria), hash `13484cbd` |
-| 65–85 | Nguyễn Công Tĩnh (có Claude hỗ trợ nháp) | Chạy mốc base, gate, trace `T-002@55`; Phiếu B mục B0–B6 | `R-base-before-20261118-083543-bde05c`, commit `37273b4` |
+| 15–65 | Nguyễn Công Tĩnh | Phiếu A mục A1–A5, `config/acceptance_criteria.json`, ký và push tiêu chí | commit `a5c859d` (Sign acceptance criteria), hash `13484cbd` |
+| 65–85 | Nguyễn Công Tĩnh | Chạy mốc base, gate, trace `T-002@55`; Phiếu B mục B0–B6 | `R-base-before-20261118-083543-bde05c`, commit `37273b4` |
 | 85–115 | Dương Tuấn Hưng, Trần Đăng Khoa, Nguyễn Ngọc Minh Đức | Cổng vòng 1 (`lab10/guards.py`), `config/operating_gates.json`, Phiếu B mục B7–B8, chốt vòng 1 | `R-base-prepared-20261118-162549-345c70`, hash `27df2c92`, commit `323660f` |
 | 125–200 | Dương Tuấn Hưng, Nguyễn Công Tĩnh, Trần Đăng Khoa, Nguyễn Ngọc Minh Đức | Nhận thẻ `S5`, đo mốc prepared, phân tích trace `S5-02, 20, 21, 50, 51, 70`, sửa `guards.py` + `monitors.py` + `operating_gates.json`, điền Phiếu C mục C0–C12, quyết định v2 (`Thu hẹp`) | `R-S5-grade-20261118-164447-0590dc` (trước sửa) → `R-S5-grade-20261118-165649-9dc810` (`PASS-VISIBLE`) |
 | 200–240 | Cả bàn (Tĩnh, Hưng, Khoa, Đức) | Kiểm tra lại bộ nền, gom bài nộp `submission/` (`check_submission --collect` đạt `ĐỦ THÀNH PHẦN`), cập nhật `TEAM.md` và đẩy bài nộp | `submission/manifest.json`, `R-S5-after-20261118-165650-9dc810`, `R-base-after-20261118-165649-9dc810` |
