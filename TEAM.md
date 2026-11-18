@@ -2,9 +2,9 @@
 
 ## Thông tin nhóm
 
-- Tên nhóm (`TenNhom`, không dấu, không khoảng trắng):
-- Lớp: `L3A` / `L3B`
-- Repo của bàn: `K5-<L3A|L3B>-DAY10-<TenNhom>-PoCtoPilotGate1`
+- Tên nhóm (`TenNhom`, không dấu, không khoảng trắng): NhomKhongCoTen
+- Lớp: `L3A`
+- Repo của bàn: `K5-L3A-DAY10-NhomKhongCoTen-PoCtoPilotGate1`
 - Thẻ sự cố đã bốc (S1–S8):
 
 ## Thành viên
@@ -13,10 +13,10 @@ Họ tên đầy đủ và MSSV của **mọi** thành viên; thêm dòng nếu 
 
 | STT | Họ và tên | MSSV | Vai | Trưởng nhóm |
 | --: | --------- | ---- | --- | :---------: |
-|   1 |           |      |     |             |
-|   2 |           |      |     |             |
-|   3 |           |      |     |             |
-|   4 |           |      |     |             |
+|   1 | Nguyễn Công Tĩnh | 2A202603373 | Kỹ sư cổng | ✅ |
+|   2 | Dương Tuấn Hưng | 2A202603416 | Kỹ sư cổng | |
+|   3 | Trần Đăng Khoa | 2A202603364 | Sản phẩm và kinh doanh | |
+|   4 | Nguyễn Ngọc Minh Đức | 2A202603421 | Vận hành và pháp lý | |
 
 Ghi `members` trong `submission/submission.json` theo dạng `"HoVaTen-MSSV"`, khớp bảng trên.
 
@@ -24,7 +24,61 @@ Ghi `members` trong `submission/submission.json` theo dạng `"HoVaTen-MSSV"`, k
 
 Mỗi thành viên tự viết một mục bên dưới (chép mẫu, đổi tiêu đề thành họ tên không dấu và MSSV, ví dụ `## NguyenVanAn-20241234`).
 
-## HoVaTen-MSSV
+## NguyenCongTinh-2A202603373
+
+### Phần việc phụ trách
+
+Vai trong bàn; câu nào của đề, mục nào của phiếu A/B/C, file nào (`lab10/guards.py`, `config/operating_gates.json`, …).
+
+### Đóng góp cụ thể
+
+...
+
+### Bằng chứng
+
+Mã commit, mã lần chạy (`runs/<mã>`), dòng trong phiếu.
+
+### Exit ticket
+
+Một điều học được, một điều còn chưa chắc.
+
+## DuongTuanHung-2A202603416
+
+### Phần việc phụ trách
+
+Vai trong bàn; câu nào của đề, mục nào của phiếu A/B/C, file nào (`lab10/guards.py`, `config/operating_gates.json`, …).
+
+### Đóng góp cụ thể
+
+...
+
+### Bằng chứng
+
+Mã commit, mã lần chạy (`runs/<mã>`), dòng trong phiếu.
+
+### Exit ticket
+
+Một điều học được, một điều còn chưa chắc.
+
+## TranDangKhoa-2A202603364
+
+### Phần việc phụ trách
+
+Vai trong bàn; câu nào của đề, mục nào của phiếu A/B/C, file nào (`lab10/guards.py`, `config/operating_gates.json`, …).
+
+### Đóng góp cụ thể
+
+...
+
+### Bằng chứng
+
+Mã commit, mã lần chạy (`runs/<mã>`), dòng trong phiếu.
+
+### Exit ticket
+
+Một điều học được, một điều còn chưa chắc.
+
+## NguyenNgocMinhDuc-2A202603421
 
 ### Phần việc phụ trách
 
